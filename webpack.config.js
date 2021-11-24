@@ -229,6 +229,8 @@ module.exports = {
     new ReactNative.OutputPlugin({
       platform,
       devServerEnabled: devServer.enabled,
+      localChunks: [/Local/],
+      remoteChunksOutput: path.join(__dirname, 'chunks', platform),
     }),
 
     /**

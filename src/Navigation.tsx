@@ -7,40 +7,17 @@ import {
   createBottomTabNavigator,
 } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import ActivityTracker from "./modules/ActivityTracker/ActivityTracker";
 import { modules } from "./modules";
 import Home from "./modules/Home/Home";
-import { getItem, getPaymentKeys, storePaymentKey } from "./modules/storage";
-
-const Statistics = React.lazy(
-  () =>
-    import(
-      /* webpackChunkName: "statistics" */ "./modules/Statistics/Statistics"
-    )
-);
+import { getPaymentKeys, storePaymentKey } from "./modules/storage";
+import ActivityTracker from "./modules/ActivityTracker/ActivityTracker";
+import Statistics from "./modules/Statistics";
+import Exercises from "./modules/Exercises";
 
 export const AppContext = React.createContext({});
 
-const Exercises = React.lazy(
-  () =>
-    import(/* webpackChunkName: "exercises" */ "./modules/Exercises/Exercises")
-);
-Ionicons.loadFont();
-const StatisticsScreen = () => {
-  return (
-    <React.Suspense fallback={<Text>Loading...</Text>}>
-      <Statistics />
-    </React.Suspense>
-  );
-};
 
-const ExercisesScreen = () => {
-  return (
-    <React.Suspense fallback={<Text>Loading...</Text>}>
-      <Exercises />
-    </React.Suspense>
-  );
-};
+Ionicons.loadFont();
 
 const disabledTabBarButton =
   (enabled: boolean, moduleName: string, buyApp: () => void) => 
@@ -134,13 +111,13 @@ export function Navigation() {
         >
           <Tab.Screen name="Home" component={Home} />
           <Tab.Screen name="ActivityTracker" component={ActivityTracker} />
-          <Tab.Screen name="Statistics" component={StatisticsScreen} options={{
+          <Tab.Screen name="Statistics" component={Statistics} options={{
               // Applying the disabled button
               tabBarButton: disabledTabBarButton(boughtModules['Statistics'], "Statistics", () => buyModule("Statistics")),
             }}/>
           <Tab.Screen
             name="Exercises"
-            component={ExercisesScreen}
+            component={Exercises}
             options={{
               // Applying the disabled button
               tabBarButton: disabledTabBarButton(boughtModules["Exercises"],"Exercises", () => buyModule("Exercises")),

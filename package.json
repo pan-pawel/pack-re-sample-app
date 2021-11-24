@@ -8,7 +8,9 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "bundle": "react-native webpack-bundle --platform ios --entry-file index.js --bundle-output ./output/index.bundle --dev=false"
+    "bundle": "react-native webpack-bundle --platform ios --entry-file index.js --bundle-output ./dist/index.bundle --dev=false",
+    "webpack": "PLATFORM=ios webpack -c webpack.config.js"
+
   },
   "dependencies": {
     "@babel/preset-react": "^7.16.0",

@@ -86,9 +86,10 @@ module.exports = {
      * dependency. You might need it when using workspaces/monorepos or unconventional project
      * structure. For simple/typical project you won't need it.
      */
-    // alias: {
-    //   'react-native': reactNativePath,
-    // },
+     alias: {
+      'react-native': reactNativePath,
+      '@babel/runtime': path.join(__dirname, 'node_modules/@babel/runtime'),
+    },
   },
   /**
    * Configures output.
@@ -119,11 +120,12 @@ module.exports = {
          * If you want to gather in-file licenses, feel free to remove this line or configure it
          * differently.
          */
-        extractComments: false,
-      }),
-    ],
-  },
-  module: {
+         extractComments: false,
+        }),
+      ],
+      chunkIds: 'named',
+    },
+    module: {
     /**
      * This rule will process all React Native related dependencies with Babel.
      * If you have a 3rd-party dependency that you need to transpile, you can add it to the
@@ -229,7 +231,7 @@ module.exports = {
     new ReactNative.OutputPlugin({
       platform,
       devServerEnabled: devServer.enabled,
-      localChunks: [/Local/],
+      localChunks: [/local/],
       remoteChunksOutput: path.join(__dirname, 'chunks', platform),
     }),
 

@@ -231,7 +231,7 @@ module.exports = {
     new ReactNative.OutputPlugin({
       platform,
       devServerEnabled: devServer.enabled,
-      localChunks: [/local/],
+      localChunks: [/statistics/],
       remoteChunksOutput: path.join(__dirname, 'chunks', platform),
     }),
 

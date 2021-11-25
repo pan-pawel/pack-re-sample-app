@@ -3,7 +3,7 @@ import { Text, View,ActivityIndicator, StyleSheet } from "react-native";
 
 const Statistics = React.lazy(
     () =>
-      import(/* webpackChunkName: "Statistics" */ "./Statistics")
+      import(/* webpackChunkName: "statistics" */ "./Statistics")
   );
 
 export default () => {
